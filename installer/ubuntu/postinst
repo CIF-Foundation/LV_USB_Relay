@@ -1,0 +1,41 @@
+#!/bin/sh
+# Apply the relay hidraw rule to boards already plugged in.
+# Boards connected later are handled by udev on each add event.
+
+case "${1:-configure}" in
+    configure) ;;
+    *) exit 0 ;;
+esac
+
+udevadm_bin() {
+    if command -v udevadm >/dev/null 2>&1; then
+        command -v udevadm
+        return
+    fi
+    for candidate in /usr/bin/udevadm /bin/udevadm /sbin/udevadm; do
+        if [ -x "$candidate" ]; then
+            echo "$candidate"
+            return
+        fi
+    done
+}
+
+UDEVADM=$(udevadm_bin)
+if [ -n "$UDEVADM" ]; then
+    "$UDEVADM" control --reload-rules || true
+    "$UDEVADM" trigger --subsystem-match=hidraw || true
+fi
+
+# Fallback when a node was created before the rule existed and trigger
+# did not restamp its mode. Safe to repeat. No boards is a normal result.
+for dev in /sys/class/hidraw/hidraw*; do
+    [ -e "$dev/device/uevent" ] || continue
+    name=$(basename "$dev")
+    if grep -E -q -i 'HID_ID=.*16C0:.*05DF' "$dev/device/uevent"; then
+        if [ -e "/dev/$name" ]; then
+            chmod 666 "/dev/$name" || true
+        fi
+    fi
+done
+
+exit 0

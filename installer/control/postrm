@@ -1,0 +1,25 @@
+#!/bin/sh
+# The rule file is removed with the package. Reload so a later plug-in
+# no longer matches it. Nodes already present keep their current mode
+# until they are unplugged.
+
+udevadm_bin() {
+    if command -v udevadm >/dev/null 2>&1; then
+        command -v udevadm
+        return
+    fi
+    for candidate in /usr/bin/udevadm /bin/udevadm /sbin/udevadm; do
+        if [ -x "$candidate" ]; then
+            echo "$candidate"
+            return
+        fi
+    done
+}
+
+UDEVADM=$(udevadm_bin)
+if [ -n "$UDEVADM" ]; then
+    "$UDEVADM" control --reload-rules || true
+    "$UDEVADM" trigger --subsystem-match=hidraw || true
+fi
+
+exit 0

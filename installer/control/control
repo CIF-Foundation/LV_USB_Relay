@@ -1,0 +1,6 @@
+Package: usbrelay-hidraw
+Version: 1.0.0
+Architecture: core2-64
+Maintainer: todd@ext.applied.co
+Description: Grant lvuser access to dcttech USB relay boards (16c0:05df) on hidraw nodes, including boards plugged in after install.
+Priority: optional

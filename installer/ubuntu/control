@@ -1,0 +1,11 @@
+Package: usbrelay-hidraw
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: todd@ext.applied.co
+Depends: udev
+Installed-Size: 1
+Description: USB hidraw access for dcttech relay boards
+ Grants read/write access to USB relay boards (16c0:05df) on /dev/hidraw
+ nodes, including boards plugged in after installation.
