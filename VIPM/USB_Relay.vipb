@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-02-08 07:45:01" Modified_Date="2026-10-31 13:53:30" Creator="toddw" Comments="" ID="60a64c9ba3bd7db0969764e8f311285b">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-02-08 07:45:01" Modified_Date="2026-11-02 15:33:15" Creator="toddw" Comments="" ID="4f9f1d480daa932ddc226343b40eca83">
   <Library_General_Settings>
     <Package_File_Name>CIF_Foundation_lib_USB_Relay</Package_File_Name>
-    <Library_Version>1.0.0.2</Library_Version>
+    <Library_Version>1.0.1.3</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>..\usb_relay_control</Library_Source_Folder>
     <Library_Output_Folder>..\..\builds\VIPM</Library_Output_Folder>
@@ -36,7 +36,7 @@ An installer is needed for Linux to set permissions for the hidraw device node. 
       <Copyright/>
       <Packager>DOME Automation</Packager>
       <URL>https://github.com/CIF-Foundation/LV_USB_Relay</URL>
-      <Release_Notes/>
+      <Release_Notes>Bug fix for read on Windows.</Release_Notes>
     </Description>
     <Destinations>
       <Toolkit_VIs>
@@ -294,7 +294,7 @@ An installer is needed for Linux to set permissions for the hidraw device node. 
         <Path>..\usb_relay_control\Core\Write Device ID.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>5A5463978CC678B738BA6A7A057BF8CC</GUID>
+      <GUID>D4624B4C6580E25E9D9D76F52E2693FD</GUID>
     </Functions_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>
